@@ -126,10 +126,6 @@ V4.00 ECAT 1: The handling of the Sync Manager Parameter was included according 
 
 
 #undef _OBJD_
-
-// Gloable UART Modul Variabeln
-extern UINT8 SDO_RES_FLAG;
-
 /*-----------------------------------------------------------------------------------------
 ------
 ------    Backup Parameter
@@ -942,12 +938,6 @@ void COE_Main(void)
             bStoreCompleteAccess = 0;
             pSdoPendFunc = NULL;
         }
-    }else if(SDO_RES_FLAG){
-    	if(0x3000 <= u16StoreIndex && u16StoreIndex < 0x6000){
-    		SDOResAfterUART();
-    		SDO_RES_FLAG = 0;
-    	}
-
     }
 }
 

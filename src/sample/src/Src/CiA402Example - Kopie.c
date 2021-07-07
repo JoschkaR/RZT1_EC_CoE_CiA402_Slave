@@ -33,17 +33,17 @@
 ------    local types and defines
 ------
 --------------------------------------------------------------------------------------*/
-typedef enum{
-	readyToSwitchOn,
-	switchedOn,
-	operationEnable
-}stateCiA402;
+
 /*-----------------------------------------------------------------------------------------
 ------
 ------    local variables and constants
 ------
 -----------------------------------------------------------------------------------------*/
-
+typedef enum{
+	readyToSwitchOn,
+	switchedOn,
+	operationEnable
+}stateCiA402;
 /*-----------------------------------------------------------------------------------------
 ------
 ------    application specific functions
@@ -280,7 +280,7 @@ void APPL_InputMapping(UINT16* pData)
 	    *pData = Statusword0x6041;
 	    pData++;
 
-	    MEMCPY(pData,&PositionActualValue0x6064,8);
+	    // MEMCPY(pData,&PositionActualValueLarge0x6464,8);
 	}
     else if(sTxPDOassign.aEntries[0] == 0x1A02) /* csv process data is mapped*/
     {
@@ -309,7 +309,7 @@ void APPL_OutputMapping(UINT16* pData)
 	    Controlword0x6040 = *pData;
 	    pData++;
 
-	    MEMCPY(&TargetPosition0x607A,pData,8);
+	    // MEMCPY(&TargetPositionLarge0x647A,pData,4);
 	}
     else if(sRxPDOassign.aEntries[0] == 0x1602) /* csv process data is mapped*/
     {
@@ -361,7 +361,6 @@ void APPL_Application(void)
 		Statusword0x6041 = 4663;
 		break;
 	}
-
 
 	PositionActualValue0x6064 = TargetPosition0x607A;
 	VelocityActualValue0x606C = TargetVelocity0x60FF;

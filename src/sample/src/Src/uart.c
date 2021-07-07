@@ -557,8 +557,8 @@ uint8_t uartHandlerFsm(void){
 			actuellePosition 	|= 	((uint32_t) inData[5]) << 0;
 			
 
-			setStatuswordValue(statusword);
-			setPositionActualValue(actuellePosition);
+			// setStatuswordValue(statusword);
+			// setPositionActualValue(actuellePosition);
 			
 			if(SDO_IND_FLAG){
 				state = warte_datenempfang_SDO;
@@ -582,7 +582,7 @@ uint8_t uartHandlerFsm(void){
 			sdo_res_data |= ((uint32_t) inData[2]) << 8;
 			sdo_res_data |= ((uint32_t) inData[3]) << 0;
 
-			setStoreData(sdo_res_data);
+			// setStoreData(sdo_res_data);
 
 			// Aktualisiere Flags
 			SDO_IND_FLAG = 0;

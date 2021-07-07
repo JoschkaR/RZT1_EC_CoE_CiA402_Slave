@@ -136,7 +136,7 @@ TOBJ1601;
 */
 PROTO TOBJ1601 RxPdoMappingCsp0x1601
 #if defined(_CI_A402_EXAMPLE_) && (_CI_A402_EXAMPLE_ == 1)
-={3,0x60400010,0x607A0020,0x00000010}
+={3,0x60400010,0x607A0040,0x00000010}
 #endif
 ;
 /** @}*/
@@ -315,7 +315,7 @@ TOBJ1A01;
 */
 PROTO TOBJ1A01 TxPdoMappingCsp0x1A01
 #if defined(_CI_A402_EXAMPLE_) && (_CI_A402_EXAMPLE_ == 1)
-={3,0x60410010,0x60640020,0x00000010}
+={3,0x60410010,0x60640040,0x00000010}
 #endif
 ;
 /** @}*/
@@ -336,13 +336,13 @@ PROTO TOBJ1A01 TxPdoMappingCsp0x1A01
 * <br>
 * SubIndex 0<br>
 * SubIndex 1 - map control word<br>
-* SubIndex 2 - map actual position<br>
+* SubIndex 2 - map actual velocity<br>
 * SubIndex 3 - add 16bit padding to get an 32Bit object/process data structure<br>
 */
 OBJCONST TSDOINFOENTRYDESC    OBJMEM asEntryDesc0x1A02[] = {
 { DEFTYPE_UNSIGNED8 , 0x8 , ACCESS_READ },
 { DEFTYPE_UNSIGNED32 , 0x20 , ACCESS_READ }, /* Subindex1 - map control word */
-{ DEFTYPE_UNSIGNED32 , 0x20 , ACCESS_READ }, /* Subindex2 - map actual position */
+{ DEFTYPE_UNSIGNED32 , 0x20 , ACCESS_READ }, /* Subindex2 - map actual velocity */
 { DEFTYPE_UNSIGNED32 , 0x20 , ACCESS_READ }}; /* Subindex3 - add 16bit padding to get an 32Bit object/process data structure */
 
 /**
@@ -361,7 +361,7 @@ OBJCONST UCHAR OBJMEM aName0x1A02[] = "TxPdoMappingCsv\000"
 typedef struct OBJ_STRUCT_PACKED_START {
 UINT16 u16SubIndex0;
 UINT32 SI1; /* Subindex1 - map control word */
-UINT32 SI2; /* Subindex2 - map actual position */
+UINT32 SI2; /* Subindex2 - map actual velocity */
 UINT32 SI3; /* Subindex3 - add 16bit padding to get an 32Bit object/process data structure */
 } OBJ_STRUCT_PACKED_END
 TOBJ1A02;
@@ -372,7 +372,7 @@ TOBJ1A02;
 */
 PROTO TOBJ1A02 TxPdoMappingCsv0x1A02
 #if defined(_CI_A402_EXAMPLE_) && (_CI_A402_EXAMPLE_ == 1)
-={3,0x60410010,0x60640020,0x00000010}
+={3,0x60410010,0x606C0020,0x00000010}
 #endif
 ;
 /** @}*/
@@ -861,7 +861,7 @@ PROTO INT8 ModesOfOperationDisplay0x6061
 /**
 * \brief Entry description
 */
-OBJCONST TSDOINFOENTRYDESC    OBJMEM sEntryDesc0x6064 = { DEFTYPE_INTEGER32 , 0x20 , ACCESS_READ };
+OBJCONST TSDOINFOENTRYDESC    OBJMEM sEntryDesc0x6064 = { DEFTYPE_INTEGER64 , 0x40 , ACCESS_READ };
 /**
 * \brief Object name
 */
@@ -871,9 +871,9 @@ OBJCONST UCHAR OBJMEM aName0x6064[] = "Position actual value\000\377";
 /**
 * \brief Object variable
 */
-PROTO INT32 PositionActualValue0x6064
+PROTO INT64 PositionActualValue0x6064
 #if defined(_CI_A402_EXAMPLE_) && (_CI_A402_EXAMPLE_ == 1)
-= 0x00000000
+= 0x0000000000000000
 #endif
 ;
 /** @}*/
@@ -954,7 +954,7 @@ PROTO INT32 TorqueActualValue0x6077
 /**
 * \brief Entry description
 */
-OBJCONST TSDOINFOENTRYDESC    OBJMEM sEntryDesc0x607A = { DEFTYPE_INTEGER32 , 0x20 , ACCESS_READWRITE };
+OBJCONST TSDOINFOENTRYDESC    OBJMEM sEntryDesc0x607A = { DEFTYPE_INTEGER64 , 0x40 , ACCESS_READWRITE };
 /**
 * \brief Object name
 */
@@ -964,9 +964,9 @@ OBJCONST UCHAR OBJMEM aName0x607A[] = "Target position\000\377";
 /**
 * \brief Object variable
 */
-PROTO INT32 TargetPosition0x607A
+PROTO INT64 TargetPosition0x607A
 #if defined(_CI_A402_EXAMPLE_) && (_CI_A402_EXAMPLE_ == 1)
-= 0x00000000
+= 0x0000000000000000
 #endif
 ;
 /** @}*/
@@ -1323,13 +1323,13 @@ TOBJECT    OBJMEM ApplicationObjDic[] = {
 /* Object 0x6061 */
 {NULL , NULL ,  0x6061 , {DEFTYPE_INTEGER8 , 0 | (OBJCODE_VAR << 8)} , &sEntryDesc0x6061 , aName0x6061 , &ModesOfOperationDisplay0x6061 , ModeRead , ModeWrite , 0x0000 },
 /* Object 0x6064 */
-{NULL , NULL ,  0x6064 , {DEFTYPE_INTEGER32 , 0 | (OBJCODE_VAR << 8)} , &sEntryDesc0x6064 , aName0x6064 , &PositionActualValue0x6064 , NULL , NULL , 0x0000 },
+{NULL , NULL ,  0x6064 , {DEFTYPE_INTEGER64 , 0 | (OBJCODE_VAR << 8)} , &sEntryDesc0x6064 , aName0x6064 , &PositionActualValue0x6064 , NULL , NULL , 0x0000 },
 /* Object 0x606C */
 {NULL , NULL ,  0x606C , {DEFTYPE_INTEGER32 , 0 | (OBJCODE_VAR << 8)} , &sEntryDesc0x606C , aName0x606C , &VelocityActualValue0x606C , NULL , NULL , 0x0000 },
 /* Object 0x6077 */
 {NULL , NULL ,  0x6077 , {DEFTYPE_INTEGER32 , 0 | (OBJCODE_VAR << 8)} , &sEntryDesc0x6077 , aName0x6077 , &TorqueActualValue0x6077 , NULL , NULL , 0x0000 },
 /* Object 0x607A */
-{NULL , NULL ,  0x607A , {DEFTYPE_INTEGER32 , 0 | (OBJCODE_VAR << 8)} , &sEntryDesc0x607A , aName0x607A , &TargetPosition0x607A , NULL , NULL , 0x0000 },
+{NULL , NULL ,  0x607A , {DEFTYPE_INTEGER64 , 0 | (OBJCODE_VAR << 8)} , &sEntryDesc0x607A , aName0x607A , &TargetPosition0x607A , NULL , NULL , 0x0000 },
 /* Object 0x607D */
 {NULL , NULL ,  0x607D , {DEFTYPE_RECORD , 2 | (OBJCODE_REC << 8)} , asEntryDesc0x607D , aName0x607D , &SoftwarePositionLimit0x607D , NULL , NULL , 0x0000 },
 /* Object 0x6085 */

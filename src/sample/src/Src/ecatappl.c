@@ -162,17 +162,6 @@ V4.00 APPL 6: The main function was split in MainInit and MainLoop
 #define    MEASUREMENT_ACTIVE (((sSyncManOutPar.u16GetCycleTime & 0x1) == 0x1) || ((sSyncManInPar.u16GetCycleTime & 0x1) == 0x1))
 /*ECATCHANGE_END(V5.12) ECAT1*/
 
-
-// Globale Variabeln aus UART Modul
-extern UINT8 UART_AKTIV_HANDLER;
-
-extern UINT32 targetPosition;
-extern UINT32 targetVelocity;
-extern UINT16 controlword;
-
-
-
-
 /*-----------------------------------------------------------------------------------------
 ------
 ------    local variables and constants
@@ -511,15 +500,6 @@ void PDI_Isr(void)
             HW_EscReadByteIsr(u8dummy,(nEscAddrOutputData+nPdOutputSize-1));
         }
         }
-
-        // Einstellungen für UART Modul
-        UART_AKTIV_HANDLER = 0xff;
-
-        targetPosition = getTargetPosition();
-        targetVelocity = getTargetVelocity();
-        controlword = getControlword();
-
-
 
         /*
             Call ECAT_Application() in SM Sync mode

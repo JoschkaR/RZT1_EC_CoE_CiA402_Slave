@@ -15,8 +15,8 @@
 		</Groups>
 		<Devices>
 			<Device Physics="YY">
-				<Type ProductCode="#x0402" RevisionNo="#x0100">RZT1_V22</Type>
-				<Name>RZT1_V22</Name>
+				<Type ProductCode="#x0402" RevisionNo="#x0100">RZT1_V2_3</Type>
+				<Name>RZT1_V2_3</Name>
 				<Info>
 					<StateMachine>
 						<Timeout>
@@ -50,8 +50,8 @@
 								<BitSize>24</BitSize>
 							</DataType>
 							<DataType>
-								<Name>STRING(8)</Name>
-								<BitSize>64</BitSize>
+								<Name>STRING(9)</Name>
+								<BitSize>72</BitSize>
 							</DataType>
 							<DataType>
 								<Name>USINT</Name>
@@ -80,6 +80,10 @@
 							<DataType>
 								<Name>SINT</Name>
 								<BitSize>8</BitSize>
+							</DataType>
+							<DataType>
+								<Name>LINT</Name>
+								<BitSize>64</BitSize>
 							</DataType>
 							<DataType>
 								<Name>DINT</Name>
@@ -984,10 +988,10 @@
 							<Object>
 								<Index>#x1008</Index>
 								<Name>Device name</Name>
-								<Type>STRING(8)</Type>
-								<BitSize>64</BitSize>
+								<Type>STRING(9)</Type>
+								<BitSize>72</BitSize>
 								<Info>
-									<DefaultData>525A54315F563232</DefaultData>
+									<DefaultData>525A54315F56325F33</DefaultData>
 								</Info>
 								<Flags>
 									<Access>ro</Access>
@@ -1156,7 +1160,7 @@
 									<SubItem>
 										<Name>SubIndex 002</Name>
 										<Info>
-											<DefaultData>20007A60</DefaultData>
+											<DefaultData>40007A60</DefaultData>
 										</Info>
 									</SubItem>
 									<SubItem>
@@ -1264,7 +1268,7 @@
 									<SubItem>
 										<Name>SubIndex 002</Name>
 										<Info>
-											<DefaultData>20006460</DefaultData>
+											<DefaultData>40006460</DefaultData>
 										</Info>
 									</SubItem>
 									<SubItem>
@@ -1296,7 +1300,7 @@
 									<SubItem>
 										<Name>SubIndex 002</Name>
 										<Info>
-											<DefaultData>20006460</DefaultData>
+											<DefaultData>20006C60</DefaultData>
 										</Info>
 									</SubItem>
 									<SubItem>
@@ -1596,10 +1600,10 @@
 							<Object>
 								<Index>#x6064</Index>
 								<Name>Position actual value</Name>
-								<Type>DINT</Type>
-								<BitSize>32</BitSize>
+								<Type>LINT</Type>
+								<BitSize>64</BitSize>
 								<Info>
-									<DefaultData>00000000</DefaultData>
+									<DefaultData>0000000000000000</DefaultData>
 								</Info>
 								<Flags>
 									<Access>ro</Access>
@@ -1632,10 +1636,10 @@
 							<Object>
 								<Index>#x607A</Index>
 								<Name>Target position</Name>
-								<Type>DINT</Type>
-								<BitSize>32</BitSize>
+								<Type>LINT</Type>
+								<BitSize>64</BitSize>
 								<Info>
-									<DefaultData>00000000</DefaultData>
+									<DefaultData>0000000000000000</DefaultData>
 								</Info>
 								<Flags>
 									<Access>rw</Access>
@@ -1783,9 +1787,9 @@
 				<Fmmu>MBoxState</Fmmu>
 				<Sm MinSize="#x22" MaxSize="#x100" DefaultSize="#x80" StartAddress="#x1000" ControlByte="#x26" Enable="1">MBoxOut</Sm>
 				<Sm MinSize="#x22" MaxSize="#x100" DefaultSize="#x80" StartAddress="#x1080" ControlByte="#x22" Enable="1">MBoxIn</Sm>
-				<Sm DefaultSize="8" StartAddress="#x1100" ControlByte="#x64" Enable="1">Outputs</Sm>
-				<Sm DefaultSize="8" StartAddress="#x1400" ControlByte="#x20" Enable="1">Inputs</Sm>
-				<RxPdo Fixed="true" Mandatory="true">
+				<Sm DefaultSize="12" StartAddress="#x1100" ControlByte="#x64" Enable="1">Outputs</Sm>
+				<Sm DefaultSize="12" StartAddress="#x1400" ControlByte="#x20" Enable="1">Inputs</Sm>
+				<RxPdo Fixed="true" Mandatory="false">
 					<Index>#x1600</Index>
 					<Name>RxPdoMappingCspCsV</Name>
 					<Entry>
@@ -1800,7 +1804,7 @@
 						<SubIndex>0</SubIndex>
 						<BitLen>32</BitLen>
 						<Name>Target position</Name>
-						<DataType>DINT</DataType>
+						<DataType>LINT</DataType>
 					</Entry>
 					<Entry>
 						<Index>#x60FF</Index>
@@ -1822,7 +1826,7 @@
 						<BitLen>24</BitLen>
 					</Entry>
 				</RxPdo>
-				<RxPdo Fixed="true" Mandatory="true" Sm="2">
+				<RxPdo Fixed="true" Mandatory="false" Sm="2">
 					<Index>#x1601</Index>
 					<Name>RxPdoMappingCsp</Name>
 					<Entry>
@@ -1835,9 +1839,9 @@
 					<Entry>
 						<Index>#x607A</Index>
 						<SubIndex>0</SubIndex>
-						<BitLen>32</BitLen>
+						<BitLen>64</BitLen>
 						<Name>Target position</Name>
-						<DataType>DINT</DataType>
+						<DataType>LINT</DataType>
 					</Entry>
 					<Entry>
 						<Index>#x0</Index>
@@ -1845,7 +1849,7 @@
 						<BitLen>16</BitLen>
 					</Entry>
 				</RxPdo>
-				<RxPdo Fixed="true" Mandatory="true">
+				<RxPdo Fixed="true" Mandatory="false">
 					<Index>#x1602</Index>
 					<Name>RxPdoMappingCsv</Name>
 					<Entry>
@@ -1868,7 +1872,7 @@
 						<BitLen>16</BitLen>
 					</Entry>
 				</RxPdo>
-				<TxPdo Fixed="true" Mandatory="true">
+				<TxPdo Fixed="true" Mandatory="false">
 					<Index>#x1A00</Index>
 					<Name>TxPdoMappingCspCsV</Name>
 					<Entry>
@@ -1883,7 +1887,7 @@
 						<SubIndex>0</SubIndex>
 						<BitLen>32</BitLen>
 						<Name>Position actual value</Name>
-						<DataType>DINT</DataType>
+						<DataType>LINT</DataType>
 					</Entry>
 					<Entry>
 						<Index>#x606C</Index>
@@ -1905,7 +1909,7 @@
 						<BitLen>24</BitLen>
 					</Entry>
 				</TxPdo>
-				<TxPdo Fixed="true" Mandatory="true" Sm="3">
+				<TxPdo Fixed="true" Mandatory="false" Sm="3">
 					<Index>#x1A01</Index>
 					<Name>TxPdoMappingCsp</Name>
 					<Entry>
@@ -1918,9 +1922,9 @@
 					<Entry>
 						<Index>#x6064</Index>
 						<SubIndex>0</SubIndex>
-						<BitLen>32</BitLen>
+						<BitLen>64</BitLen>
 						<Name>Position actual value</Name>
-						<DataType>DINT</DataType>
+						<DataType>LINT</DataType>
 					</Entry>
 					<Entry>
 						<Index>#x0</Index>
@@ -1928,7 +1932,7 @@
 						<BitLen>16</BitLen>
 					</Entry>
 				</TxPdo>
-				<TxPdo Fixed="true" Mandatory="true">
+				<TxPdo Fixed="true" Mandatory="false">
 					<Index>#x1A02</Index>
 					<Name>TxPdoMappingCsv</Name>
 					<Entry>
@@ -1939,10 +1943,10 @@
 						<DataType>UINT</DataType>
 					</Entry>
 					<Entry>
-						<Index>#x6064</Index>
+						<Index>#x606C</Index>
 						<SubIndex>0</SubIndex>
 						<BitLen>32</BitLen>
-						<Name>Position actual value</Name>
+						<Name>Velocity Actual Value</Name>
 						<DataType>DINT</DataType>
 					</Entry>
 					<Entry>

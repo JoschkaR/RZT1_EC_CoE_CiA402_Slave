@@ -909,13 +909,13 @@ DEVICE_PROFILE_TYPE: Slave device type (Object 0x1000)  */
 /** 
 DEVICE_NAME: Name of the slave device (Object 0x1008) */
 #ifndef DEVICE_NAME
-#define DEVICE_NAME                               "RZT1_V22"
+#define DEVICE_NAME                               "RZT1_V2_3"
 #endif
 
 /** 
 DEVICE_NAME_LEN: Length of 'DEVICE_NAME' without '\0' */
 #ifndef DEVICE_NAME_LEN
-#define DEVICE_NAME_LEN                           0x8
+#define DEVICE_NAME_LEN                           0x9
 #endif
 
 /** 
@@ -997,7 +997,7 @@ MAX_MBX_WRITE_ADDRESS: Maximum address for the write (receive) mailbox (Sync Man
 /** 
 MAX_PD_INPUT_SIZE: Maximum size of the process input data (Sync Manager 3) for cyclic exchange. */
 #ifndef MAX_PD_INPUT_SIZE
-#define MAX_PD_INPUT_SIZE                         0x8 //This define was already evaluated by ET9300 Project Handler(V. 1.4.1.0)!
+#define MAX_PD_INPUT_SIZE                         0xC //This define was already evaluated by ET9300 Project Handler(V. 1.4.1.0)!
 #endif
 
 /** 
@@ -1015,7 +1015,7 @@ MAX_MBX_READ_ADDRESS: Maximum address for the read (send) mailbox (Sync Manager 
 /** 
 MAX_PD_OUTPUT_SIZE: Maximum size of the process output data (Sync Manager 2) for cyclic exchange. */
 #ifndef MAX_PD_OUTPUT_SIZE
-#define MAX_PD_OUTPUT_SIZE                        0x8 //This define was already evaluated by ET9300 Project Handler(V. 1.4.1.0)!
+#define MAX_PD_OUTPUT_SIZE                        0xC //This define was already evaluated by ET9300 Project Handler(V. 1.4.1.0)!
 #endif
 
 /** 

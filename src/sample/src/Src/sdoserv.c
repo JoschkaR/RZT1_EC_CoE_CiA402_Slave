@@ -115,11 +115,8 @@ V4.00 SDO 4: SDOs with size greater than 65535 were not handled correctly, that 
 #undef  _SDOSERV_
 /*remove definition of _SDOSERV_ (#ifdef is used in objdef.h)*/
 
-// Globale Variabeln UART Modul
-extern UINT32 headerSDO;
-extern UINT32 sdoData;
 
-extern UINT8 SDO_REQ_FLAG;
+
 
 
 extern OBJCONST TOBJECT OBJMEM asObjDef[];
@@ -723,21 +720,6 @@ UINT8 SDOS_SdoInd(TINITSDOMBX MBXMEM *pSdoInd)
                     dataSize = MAX_EXPEDITED_DATA - ((sdoHeader & SDOHEADER_DATASETSIZE) >> SDOHEADERSHIFT_DATASETSIZE);
                     /* pData is the pointer to the downloaded object data */
                     pData = (UINT16 MBXMEM *) &pSdoInd[1];
-
-/** SDO Write im Bereich von Index 0x3000 bis 0x5FFF abfangen **/
-                    if(0x3000 <= index && index < 0x6000){
-                    	// Speichere SDO Anfrage ab
-                    	headerSDO = 	((UINT32) sdoHeader) 	<< 24;
-                    	headerSDO |= 	((UINT32) index) 		<< 8;
-                    	headerSDO |= 	((UINT32) subindex)		<< 0;
-
-                    	sdoData = 		((UINT32) pData[1])		<< 16;
-                    	sdoData |= 		((UINT32) pData[0])		<< 0;
-
-                    	// Setze Flag damit SDO an MAX10 weitergeleitet wird
-                    	SDO_REQ_FLAG = 0xFF;
-                    }
-/** SDO Write im Bereich von Index 0x3000 bis 0x5FFF abfangen ende**/
                 }
                 else
                 {
@@ -887,39 +869,6 @@ UINT8 SDOS_SdoInd(TINITSDOMBX MBXMEM *pSdoInd)
                     if ( command == SDOSERVICE_INITIATEUPLOADREQ )
                     {
                         /* Expedited or Normal Upload */
-/** SDO Read im Bereich von Index 0x3000 bis 0x5FFF abfangen **/
-                    	if( 0x3000 <= index && index < 0x6000){
-                        	// the application generates the SDO-Response later on by calling SDOS_SdoRes (only possible if object access function pointer is defined)
-                            u8PendingSdo = SDO_PENDING_READ;
-                            bStoreCompleteAccess = bCompleteAccess;
-                            u8StoreSubindex = subindex;
-                            u16StoreIndex = index;
-                            u32StoreDataSize = objLength;
-                            pStoreData = pData;
-                            pSdoPendFunc = pObjEntry->Read;
-
-                            bSdoInWork = TRUE;
-                            // we have to store the buffer and the response header
-                            pSdoResStored = pSdoInd;
-
-                            // update command field
-                            pSdoResStored->SdoHeader.Sdo[SDOHEADER_COMMANDOFFSET] &= ~SDOHEADER_COMMANDMASK;
-                            pSdoResStored->SdoHeader.Sdo[SDOHEADER_COMMANDOFFSET]    |= (sdoHeader & (SDOHEADER_COMPLETEACCESS | SDOHEADER_COMMAND));
-
-                        	headerSDO = ((UINT32) sdoHeader) << 24;
-                        	headerSDO |= ((UINT32) index) << 8;
-                        	headerSDO |= (UINT32) subindex;
-
-                        	sdoData = ((UINT32) pData[1]) << 16;
-                        	sdoData |= ((UINT32) pData[0]);
-
-                        	SDO_REQ_FLAG = 0xff;
-
-                            return 0;
-                    	}
-/** SDO Read im Bereich von Index 0x3000 bis 0x5FFF abfangen **/
-
-
                         abort = OBJ_Read( index, subindex, objLength, pObjEntry, pData, bCompleteAccess );
                         if ( abort == ABORTIDX_WORKING )
                         {
@@ -1419,35 +1368,6 @@ UINT8 SDOS_SdoInfoInd( TSDOINFORMATION MBXMEM *pSdoInfoInd )
     }
 
     return 0;
-}
-
-
-// Setze Daten für die SDO Antwort per EC
-void setStoreData(UINT32 data){
-	if(pStoreData != NULL){
-		pStoreData[1] = (UINT16)((data & 0xffff0000) >> 16);
-		pStoreData[0] = (UINT16)(data & 0x0000ffff);
-	}
-}
-
-// Versende SDO Antwort
-void SDOResAfterUART(){
-    UINT8 abort = 0;
-
-    // Setzte Antwortlänge auf 4 Byte
-    pSdoResStored->SdoHeader.Sdo[SDOHEADER_COMMANDOFFSET] = 0x43;
-    u32StoreDataSize = 4;
-
-    UINT8 sdoHeader = (pSdoResStored->SdoHeader.Sdo[SDOHEADER_COMMANDOFFSET] & SDOHEADER_COMMANDMASK);
-    /* the SDO-command is in bit 5-7 of the first SDO-Byte */
-    UINT8 command = (sdoHeader & SDOHEADER_COMMAND);
-
-    // pStoreData[0] = 0x3132;
-
-    SDOS_SdoRes(abort, u32StoreDataSize, pStoreData);
-
-    pSdoResStored = NULL;
-
 }
 
 /** @} */
