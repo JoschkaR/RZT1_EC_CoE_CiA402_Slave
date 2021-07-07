@@ -1,3 +1,23 @@
+*.metadaten
+*.log
+*.snap
+*.Datei
+*.o
+*.o.in
+*.d
+
+
+project/**/*
+project/*
+
+dir/project/sflash/*
+
+metadaten/*
+
+dir/project/sflash/RZ_T_sflash/HardwareDebug/src/drv/*
+
+
+
 # Prerequisites
 *.d
 
