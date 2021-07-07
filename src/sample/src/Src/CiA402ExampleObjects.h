@@ -22,12 +22,12 @@
 #define PROTO extern
 #endif
 /******************************************************************************
-*                    Object 0x1600 : RxPdoMappingCspCsV
+*                    Object 0x1600 : RxPdoMappingCsp
 ******************************************************************************/
 /**
-* \addtogroup 0x1600 0x1600 | RxPdoMappingCspCsV
+* \addtogroup 0x1600 0x1600 | RxPdoMappingCsp
 * @{
-* \brief Object 0x1600 (RxPdoMappingCspCsV) definition
+* \brief Object 0x1600 (RxPdoMappingCsp) definition
 */
 #ifdef _OBJD_
 /**
@@ -36,27 +36,21 @@
 * SubIndex 0<br>
 * SubIndex 1 - map control word<br>
 * SubIndex 2 - map taget position<br>
-* SubIndex 3 - map target velocity<br>
-* SubIndex 4 - map mode of operation<br>
-* SubIndex 5 - add 24bit padding to get an 32Bit object/process data structure<br>
+* SubIndex 3<br>
 */
 OBJCONST TSDOINFOENTRYDESC    OBJMEM asEntryDesc0x1600[] = {
 { DEFTYPE_UNSIGNED8 , 0x8 , ACCESS_READ },
 { DEFTYPE_UNSIGNED32 , 0x20 , ACCESS_READ }, /* Subindex1 - map control word */
 { DEFTYPE_UNSIGNED32 , 0x20 , ACCESS_READ }, /* Subindex2 - map taget position */
-{ DEFTYPE_UNSIGNED32 , 0x20 , ACCESS_READ }, /* Subindex3 - map target velocity */
-{ DEFTYPE_UNSIGNED32 , 0x20 , ACCESS_READ }, /* Subindex4 - map mode of operation */
-{ DEFTYPE_UNSIGNED32 , 0x20 , ACCESS_READ }}; /* Subindex5 - add 24bit padding to get an 32Bit object/process data structure */
+{ DEFTYPE_UNSIGNED32 , 0x20 , ACCESS_READ }}; /* Subindex3 */
 
 /**
 * \brief Object/Entry names
 */
-OBJCONST UCHAR OBJMEM aName0x1600[] = "RxPdoMappingCspCsV\000"
+OBJCONST UCHAR OBJMEM aName0x1600[] = "RxPdoMappingCsp\000"
 "SubIndex 001\000"
 "SubIndex 002\000"
-"SubIndex 003\000"
-"SubIndex 004\000"
-"SubIndex 005\000\377";
+"SubIndex 003\000\377";
 #endif //#ifdef _OBJD_
 
 #ifndef _CI_A402_EXAMPLE_OBJECTS_H_
@@ -67,9 +61,7 @@ typedef struct OBJ_STRUCT_PACKED_START {
 UINT16 u16SubIndex0;
 UINT32 SI1; /* Subindex1 - map control word */
 UINT32 SI2; /* Subindex2 - map taget position */
-UINT32 SI3; /* Subindex3 - map target velocity */
-UINT32 SI4; /* Subindex4 - map mode of operation */
-UINT32 SI5; /* Subindex5 - add 24bit padding to get an 32Bit object/process data structure */
+UINT32 SI3; /* Subindex3 -  */
 } OBJ_STRUCT_PACKED_END
 TOBJ1600;
 #endif //#ifndef _CI_A402_EXAMPLE_OBJECTS_H_
@@ -77,9 +69,9 @@ TOBJ1600;
 /**
 * \brief Object variable
 */
-PROTO TOBJ1600 RxPdoMappingCspCsV0x1600
+PROTO TOBJ1600 RxPdoMappingCsp0x1600
 #if defined(_CI_A402_EXAMPLE_) && (_CI_A402_EXAMPLE_ == 1)
-={5,0x60400010,0x607A0020,0x60FF0020,0x60600008,0x00000018}
+={3,0x60400010,0x607A0020,0x00000010}
 #endif
 ;
 /** @}*/
@@ -87,12 +79,12 @@ PROTO TOBJ1600 RxPdoMappingCspCsV0x1600
 
 
 /******************************************************************************
-*                    Object 0x1601 : RxPdoMappingCsp
+*                    Object 0x1601 : RxPdoMappingCspLarge
 ******************************************************************************/
 /**
-* \addtogroup 0x1601 0x1601 | RxPdoMappingCsp
+* \addtogroup 0x1601 0x1601 | RxPdoMappingCspLarge
 * @{
-* \brief Object 0x1601 (RxPdoMappingCsp) definition
+* \brief Object 0x1601 (RxPdoMappingCspLarge) definition
 */
 #ifdef _OBJD_
 /**
@@ -112,7 +104,7 @@ OBJCONST TSDOINFOENTRYDESC    OBJMEM asEntryDesc0x1601[] = {
 /**
 * \brief Object/Entry names
 */
-OBJCONST UCHAR OBJMEM aName0x1601[] = "RxPdoMappingCsp\000"
+OBJCONST UCHAR OBJMEM aName0x1601[] = "RxPdoMappingCspLarge\000"
 "SubIndex 001\000"
 "SubIndex 002\000"
 "SubIndex 003\000\377";
@@ -134,9 +126,9 @@ TOBJ1601;
 /**
 * \brief Object variable
 */
-PROTO TOBJ1601 RxPdoMappingCsp0x1601
+PROTO TOBJ1601 RxPdoMappingCspLarge0x1601
 #if defined(_CI_A402_EXAMPLE_) && (_CI_A402_EXAMPLE_ == 1)
-={3,0x60400010,0x607A0040,0x00000010}
+={3,0x60400010,0x647A0040,0x00000010}
 #endif
 ;
 /** @}*/
@@ -201,12 +193,12 @@ PROTO TOBJ1602 RxPdoMappingCsv0x1602
 
 
 /******************************************************************************
-*                    Object 0x1A00 : TxPdoMappingCspCsV
+*                    Object 0x1A00 : TxPdoMappingCsp
 ******************************************************************************/
 /**
-* \addtogroup 0x1A00 0x1A00 | TxPdoMappingCspCsV
+* \addtogroup 0x1A00 0x1A00 | TxPdoMappingCsp
 * @{
-* \brief Object 0x1A00 (TxPdoMappingCspCsV) definition
+* \brief Object 0x1A00 (TxPdoMappingCsp) definition
 */
 #ifdef _OBJD_
 /**
@@ -215,27 +207,21 @@ PROTO TOBJ1602 RxPdoMappingCsv0x1602
 * SubIndex 0<br>
 * SubIndex 1 - map status word<br>
 * SubIndex 2 - map actual position<br>
-* SubIndex 3 - map actual velocity<br>
-* SubIndex 4 - map mode of operation display<br>
-* SubIndex 5 - add 24bit padding to get an 32Bit object/process data structure<br>
+* SubIndex 3<br>
 */
 OBJCONST TSDOINFOENTRYDESC    OBJMEM asEntryDesc0x1A00[] = {
 { DEFTYPE_UNSIGNED8 , 0x8 , ACCESS_READ },
 { DEFTYPE_UNSIGNED32 , 0x20 , ACCESS_READ }, /* Subindex1 - map status word */
 { DEFTYPE_UNSIGNED32 , 0x20 , ACCESS_READ }, /* Subindex2 - map actual position */
-{ DEFTYPE_UNSIGNED32 , 0x20 , ACCESS_READ }, /* Subindex3 - map actual velocity */
-{ DEFTYPE_UNSIGNED32 , 0x20 , ACCESS_READ }, /* Subindex4 - map mode of operation display */
-{ DEFTYPE_UNSIGNED32 , 0x20 , ACCESS_READ }}; /* Subindex5 - add 24bit padding to get an 32Bit object/process data structure */
+{ DEFTYPE_UNSIGNED32 , 0x20 , ACCESS_READ }}; /* Subindex3 */
 
 /**
 * \brief Object/Entry names
 */
-OBJCONST UCHAR OBJMEM aName0x1A00[] = "TxPdoMappingCspCsV\000"
+OBJCONST UCHAR OBJMEM aName0x1A00[] = "TxPdoMappingCsp\000"
 "SubIndex 001\000"
 "SubIndex 002\000"
-"SubIndex 003\000"
-"SubIndex 004\000"
-"SubIndex 005\000\377";
+"SubIndex 003\000\377";
 #endif //#ifdef _OBJD_
 
 #ifndef _CI_A402_EXAMPLE_OBJECTS_H_
@@ -246,9 +232,7 @@ typedef struct OBJ_STRUCT_PACKED_START {
 UINT16 u16SubIndex0;
 UINT32 SI1; /* Subindex1 - map status word */
 UINT32 SI2; /* Subindex2 - map actual position */
-UINT32 SI3; /* Subindex3 - map actual velocity */
-UINT32 SI4; /* Subindex4 - map mode of operation display */
-UINT32 SI5; /* Subindex5 - add 24bit padding to get an 32Bit object/process data structure */
+UINT32 SI3; /* Subindex3 -  */
 } OBJ_STRUCT_PACKED_END
 TOBJ1A00;
 #endif //#ifndef _CI_A402_EXAMPLE_OBJECTS_H_
@@ -256,9 +240,9 @@ TOBJ1A00;
 /**
 * \brief Object variable
 */
-PROTO TOBJ1A00 TxPdoMappingCspCsV0x1A00
+PROTO TOBJ1A00 TxPdoMappingCsp0x1A00
 #if defined(_CI_A402_EXAMPLE_) && (_CI_A402_EXAMPLE_ == 1)
-={5,0x60410010,0x60640020,0x606C0020,0x60610008,0x00000018}
+={3,0x60410010,0x60640020,0x00000010}
 #endif
 ;
 /** @}*/
@@ -266,12 +250,12 @@ PROTO TOBJ1A00 TxPdoMappingCspCsV0x1A00
 
 
 /******************************************************************************
-*                    Object 0x1A01 : TxPdoMappingCsp
+*                    Object 0x1A01 : TxPdoMappingCspLarge
 ******************************************************************************/
 /**
-* \addtogroup 0x1A01 0x1A01 | TxPdoMappingCsp
+* \addtogroup 0x1A01 0x1A01 | TxPdoMappingCspLarge
 * @{
-* \brief Object 0x1A01 (TxPdoMappingCsp) definition
+* \brief Object 0x1A01 (TxPdoMappingCspLarge) definition
 */
 #ifdef _OBJD_
 /**
@@ -291,7 +275,7 @@ OBJCONST TSDOINFOENTRYDESC    OBJMEM asEntryDesc0x1A01[] = {
 /**
 * \brief Object/Entry names
 */
-OBJCONST UCHAR OBJMEM aName0x1A01[] = "TxPdoMappingCsp\000"
+OBJCONST UCHAR OBJMEM aName0x1A01[] = "TxPdoMappingCspLarge\000"
 "SubIndex 001\000"
 "SubIndex 002\000"
 "SubIndex 003\000\377";
@@ -313,9 +297,9 @@ TOBJ1A01;
 /**
 * \brief Object variable
 */
-PROTO TOBJ1A01 TxPdoMappingCsp0x1A01
+PROTO TOBJ1A01 TxPdoMappingCspLarge0x1A01
 #if defined(_CI_A402_EXAMPLE_) && (_CI_A402_EXAMPLE_ == 1)
-={3,0x60410010,0x60640040,0x00000010}
+={3,0x60410010,0x64640040,0x00000010}
 #endif
 ;
 /** @}*/
@@ -861,7 +845,7 @@ PROTO INT8 ModesOfOperationDisplay0x6061
 /**
 * \brief Entry description
 */
-OBJCONST TSDOINFOENTRYDESC    OBJMEM sEntryDesc0x6064 = { DEFTYPE_INTEGER64 , 0x40 , ACCESS_READ };
+OBJCONST TSDOINFOENTRYDESC    OBJMEM sEntryDesc0x6064 = { DEFTYPE_INTEGER32 , 0x20 , ACCESS_READ };
 /**
 * \brief Object name
 */
@@ -871,9 +855,9 @@ OBJCONST UCHAR OBJMEM aName0x6064[] = "Position actual value\000\377";
 /**
 * \brief Object variable
 */
-PROTO INT64 PositionActualValue0x6064
+PROTO INT32 PositionActualValue0x6064
 #if defined(_CI_A402_EXAMPLE_) && (_CI_A402_EXAMPLE_ == 1)
-= 0x0000000000000000
+= 0x00000000
 #endif
 ;
 /** @}*/
@@ -954,7 +938,7 @@ PROTO INT32 TorqueActualValue0x6077
 /**
 * \brief Entry description
 */
-OBJCONST TSDOINFOENTRYDESC    OBJMEM sEntryDesc0x607A = { DEFTYPE_INTEGER64 , 0x40 , ACCESS_READWRITE };
+OBJCONST TSDOINFOENTRYDESC    OBJMEM sEntryDesc0x607A = { DEFTYPE_INTEGER32 , 0x20 , ACCESS_READWRITE };
 /**
 * \brief Object name
 */
@@ -964,9 +948,9 @@ OBJCONST UCHAR OBJMEM aName0x607A[] = "Target position\000\377";
 /**
 * \brief Object variable
 */
-PROTO INT64 TargetPosition0x607A
+PROTO INT32 TargetPosition0x607A
 #if defined(_CI_A402_EXAMPLE_) && (_CI_A402_EXAMPLE_ == 1)
-= 0x0000000000000000
+= 0x00000000
 #endif
 ;
 /** @}*/
@@ -1142,6 +1126,68 @@ PROTO INT32 TargetVelocity0x60FF
 
 
 /******************************************************************************
+*                    Object 0x6464 : Position actual value Large
+******************************************************************************/
+/**
+* \addtogroup 0x6464 0x6464 | Position actual value Large
+* @{
+* \brief Object 0x6464 (Position actual value Large) definition
+*/
+#ifdef _OBJD_
+/**
+* \brief Entry description
+*/
+OBJCONST TSDOINFOENTRYDESC    OBJMEM sEntryDesc0x6464 = { DEFTYPE_REAL64 , 0x40 , ACCESS_READ };
+/**
+* \brief Object name
+*/
+OBJCONST UCHAR OBJMEM aName0x6464[] = "Position actual value Large\000\377";
+#endif //#ifdef _OBJD_
+
+/**
+* \brief Object variable
+*/
+PROTO REAL64 PositionActualValueLarge0x6464
+#if defined(_CI_A402_EXAMPLE_) && (_CI_A402_EXAMPLE_ == 1)
+= 0x0000000000000000
+#endif
+;
+/** @}*/
+
+
+
+/******************************************************************************
+*                    Object 0x647A : Target position Large
+******************************************************************************/
+/**
+* \addtogroup 0x647A 0x647A | Target position Large
+* @{
+* \brief Object 0x647A (Target position Large) definition
+*/
+#ifdef _OBJD_
+/**
+* \brief Entry description
+*/
+OBJCONST TSDOINFOENTRYDESC    OBJMEM sEntryDesc0x647A = { DEFTYPE_REAL64 , 0x40 , ACCESS_READWRITE };
+/**
+* \brief Object name
+*/
+OBJCONST UCHAR OBJMEM aName0x647A[] = "Target position Large\000\377";
+#endif //#ifdef _OBJD_
+
+/**
+* \brief Object variable
+*/
+PROTO REAL64 TargetPositionLarge0x647A
+#if defined(_CI_A402_EXAMPLE_) && (_CI_A402_EXAMPLE_ == 1)
+= 0x0000000000000000
+#endif
+;
+/** @}*/
+
+
+
+/******************************************************************************
 *                    Object 0x6502 : Supported drive modes
 ******************************************************************************/
 /**
@@ -1283,15 +1329,15 @@ PROTO UINT8 ModeWrite(UINT16 index, UINT8 subindex, UINT32 dataSize, UINT16 MBXM
 #ifdef _OBJD_
 TOBJECT    OBJMEM ApplicationObjDic[] = {
 /* Object 0x1600 */
-{NULL , NULL ,  0x1600 , {DEFTYPE_PDOMAPPING , 5 | (OBJCODE_REC << 8)} , asEntryDesc0x1600 , aName0x1600 , &RxPdoMappingCspCsV0x1600 , NULL , NULL , 0x0000 },
+{NULL , NULL ,  0x1600 , {DEFTYPE_PDOMAPPING , 3 | (OBJCODE_REC << 8)} , asEntryDesc0x1600 , aName0x1600 , &RxPdoMappingCsp0x1600 , NULL , NULL , 0x0000 },
 /* Object 0x1601 */
-{NULL , NULL ,  0x1601 , {DEFTYPE_PDOMAPPING , 3 | (OBJCODE_REC << 8)} , asEntryDesc0x1601 , aName0x1601 , &RxPdoMappingCsp0x1601 , NULL , NULL , 0x0000 },
+{NULL , NULL ,  0x1601 , {DEFTYPE_PDOMAPPING , 3 | (OBJCODE_REC << 8)} , asEntryDesc0x1601 , aName0x1601 , &RxPdoMappingCspLarge0x1601 , NULL , NULL , 0x0000 },
 /* Object 0x1602 */
 {NULL , NULL ,  0x1602 , {DEFTYPE_PDOMAPPING , 3 | (OBJCODE_REC << 8)} , asEntryDesc0x1602 , aName0x1602 , &RxPdoMappingCsv0x1602 , NULL , NULL , 0x0000 },
 /* Object 0x1A00 */
-{NULL , NULL ,  0x1A00 , {DEFTYPE_PDOMAPPING , 5 | (OBJCODE_REC << 8)} , asEntryDesc0x1A00 , aName0x1A00 , &TxPdoMappingCspCsV0x1A00 , NULL , NULL , 0x0000 },
+{NULL , NULL ,  0x1A00 , {DEFTYPE_PDOMAPPING , 3 | (OBJCODE_REC << 8)} , asEntryDesc0x1A00 , aName0x1A00 , &TxPdoMappingCsp0x1A00 , NULL , NULL , 0x0000 },
 /* Object 0x1A01 */
-{NULL , NULL ,  0x1A01 , {DEFTYPE_PDOMAPPING , 3 | (OBJCODE_REC << 8)} , asEntryDesc0x1A01 , aName0x1A01 , &TxPdoMappingCsp0x1A01 , NULL , NULL , 0x0000 },
+{NULL , NULL ,  0x1A01 , {DEFTYPE_PDOMAPPING , 3 | (OBJCODE_REC << 8)} , asEntryDesc0x1A01 , aName0x1A01 , &TxPdoMappingCspLarge0x1A01 , NULL , NULL , 0x0000 },
 /* Object 0x1A02 */
 {NULL , NULL ,  0x1A02 , {DEFTYPE_PDOMAPPING , 3 | (OBJCODE_REC << 8)} , asEntryDesc0x1A02 , aName0x1A02 , &TxPdoMappingCsv0x1A02 , NULL , NULL , 0x0000 },
 /* Object 0x1C12 */
@@ -1323,13 +1369,13 @@ TOBJECT    OBJMEM ApplicationObjDic[] = {
 /* Object 0x6061 */
 {NULL , NULL ,  0x6061 , {DEFTYPE_INTEGER8 , 0 | (OBJCODE_VAR << 8)} , &sEntryDesc0x6061 , aName0x6061 , &ModesOfOperationDisplay0x6061 , ModeRead , ModeWrite , 0x0000 },
 /* Object 0x6064 */
-{NULL , NULL ,  0x6064 , {DEFTYPE_INTEGER64 , 0 | (OBJCODE_VAR << 8)} , &sEntryDesc0x6064 , aName0x6064 , &PositionActualValue0x6064 , NULL , NULL , 0x0000 },
+{NULL , NULL ,  0x6064 , {DEFTYPE_INTEGER32 , 0 | (OBJCODE_VAR << 8)} , &sEntryDesc0x6064 , aName0x6064 , &PositionActualValue0x6064 , NULL , NULL , 0x0000 },
 /* Object 0x606C */
 {NULL , NULL ,  0x606C , {DEFTYPE_INTEGER32 , 0 | (OBJCODE_VAR << 8)} , &sEntryDesc0x606C , aName0x606C , &VelocityActualValue0x606C , NULL , NULL , 0x0000 },
 /* Object 0x6077 */
 {NULL , NULL ,  0x6077 , {DEFTYPE_INTEGER32 , 0 | (OBJCODE_VAR << 8)} , &sEntryDesc0x6077 , aName0x6077 , &TorqueActualValue0x6077 , NULL , NULL , 0x0000 },
 /* Object 0x607A */
-{NULL , NULL ,  0x607A , {DEFTYPE_INTEGER64 , 0 | (OBJCODE_VAR << 8)} , &sEntryDesc0x607A , aName0x607A , &TargetPosition0x607A , NULL , NULL , 0x0000 },
+{NULL , NULL ,  0x607A , {DEFTYPE_INTEGER32 , 0 | (OBJCODE_VAR << 8)} , &sEntryDesc0x607A , aName0x607A , &TargetPosition0x607A , NULL , NULL , 0x0000 },
 /* Object 0x607D */
 {NULL , NULL ,  0x607D , {DEFTYPE_RECORD , 2 | (OBJCODE_REC << 8)} , asEntryDesc0x607D , aName0x607D , &SoftwarePositionLimit0x607D , NULL , NULL , 0x0000 },
 /* Object 0x6085 */
@@ -1338,6 +1384,10 @@ TOBJECT    OBJMEM ApplicationObjDic[] = {
 {NULL , NULL ,  0x60C2 , {DEFTYPE_RECORD , 2 | (OBJCODE_REC << 8)} , asEntryDesc0x60C2 , aName0x60C2 , &InterpolationTimePeriod0x60C2 , NULL , NULL , 0x0000 },
 /* Object 0x60FF */
 {NULL , NULL ,  0x60FF , {DEFTYPE_INTEGER32 , 0 | (OBJCODE_VAR << 8)} , &sEntryDesc0x60FF , aName0x60FF , &TargetVelocity0x60FF , NULL , NULL , 0x0000 },
+/* Object 0x6464 */
+{NULL , NULL ,  0x6464 , {DEFTYPE_REAL64 , 0 | (OBJCODE_VAR << 8)} , &sEntryDesc0x6464 , aName0x6464 , &PositionActualValueLarge0x6464 , NULL , NULL , 0x0000 },
+/* Object 0x647A */
+{NULL , NULL ,  0x647A , {DEFTYPE_REAL64 , 0 | (OBJCODE_VAR << 8)} , &sEntryDesc0x647A , aName0x647A , &TargetPositionLarge0x647A , NULL , NULL , 0x0000 },
 /* Object 0x6502 */
 {NULL , NULL ,  0x6502 , {DEFTYPE_UNSIGNED32 , 0 | (OBJCODE_VAR << 8)} , &sEntryDesc0x6502 , aName0x6502 , &SupportedDriveModes0x6502 , NULL , NULL , 0x0000 },
 /* Object 0xF000 */

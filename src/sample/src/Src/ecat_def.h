@@ -909,7 +909,7 @@ DEVICE_PROFILE_TYPE: Slave device type (Object 0x1000)  */
 /** 
 DEVICE_NAME: Name of the slave device (Object 0x1008) */
 #ifndef DEVICE_NAME
-#define DEVICE_NAME                               "RZT1_V2_3"
+#define DEVICE_NAME                               "RZT1_V2_4"
 #endif
 
 /** 

@@ -273,14 +273,22 @@ UINT16 APPL_GenerateMapping(UINT16 *pInputSize,UINT16 *pOutputSize)
 *////////////////////////////////////////////////////////////////////////////////////////
 void APPL_InputMapping(UINT16* pData)
 {
-	if(sTxPDOassign.aEntries[0] == 0x1A01) /* csp process data is mapped*/
+	if(sTxPDOassign.aEntries[0] == 0x1A00)	/* csp  process data is mapped*/
+	{
+		/*the PDO mapping content is fixed so the variables can accessed directly*/
+	    *pData = Statusword0x6041;
+	    pData++;
+
+	    MEMCPY(pData,&PositionActualValue0x6064,4);
+	}
+	else if(sTxPDOassign.aEntries[0] == 0x1A01) /* csp large process data is mapped*/
 	{
 		/*the PDO mapping content is fixed so the variables can accessed directly*/
 
 	    *pData = Statusword0x6041;
 	    pData++;
 
-	    MEMCPY(pData,&PositionActualValue0x6064,8);
+	    MEMCPY(pData,&PositionActualValueLarge0x6464,8);
 	}
     else if(sTxPDOassign.aEntries[0] == 0x1A02) /* csv process data is mapped*/
     {
@@ -289,7 +297,7 @@ void APPL_InputMapping(UINT16* pData)
         *pData = Statusword0x6041;
         pData++;
 
-        MEMCPY(pData,&PositionActualValue0x6064,4);
+        MEMCPY(pData,&VelocityActualValue0x606C,4);
     }
 }
 
@@ -302,14 +310,22 @@ void APPL_InputMapping(UINT16* pData)
 *////////////////////////////////////////////////////////////////////////////////////////
 void APPL_OutputMapping(UINT16* pData)
 {
-	if(sRxPDOassign.aEntries[0] == 0x1601) /* csp process data is mapped*/
+	if(sRxPDOassign.aEntries[0] == 0x1600)	/* csp process data is mapped*/
 	{
 		/*the PDO mapping content is fixed so the variables can accessed directly*/
 
 	    Controlword0x6040 = *pData;
 	    pData++;
 
-	    MEMCPY(&TargetPosition0x607A,pData,8);
+	    MEMCPY(&TargetPosition0x607A,pData,4);
+	}
+	else if(sRxPDOassign.aEntries[0] == 0x1601) /* csp large process data is mapped*/
+	{
+		/*the PDO mapping content is fixed so the variables can accessed directly*/
+	    Controlword0x6040 = *pData;
+	    pData++;
+
+	    MEMCPY(&TargetPositionLarge0x647A,pData,8);
 	}
     else if(sRxPDOassign.aEntries[0] == 0x1602) /* csv process data is mapped*/
     {
@@ -362,8 +378,8 @@ void APPL_Application(void)
 		break;
 	}
 
-
 	PositionActualValue0x6064 = TargetPosition0x607A;
+	PositionActualValueLarge0x6464 = TargetPositionLarge0x647A;
 	VelocityActualValue0x606C = TargetVelocity0x60FF;
 
 
@@ -388,7 +404,6 @@ UINT16 APPL_GetDeviceID()
     return 0x5;
 }
 #endif
-
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /**
@@ -476,6 +491,7 @@ UINT8 ModeWrite(UINT16 index, UINT8 subindex, UINT32 dataSize, UINT16 MBXMEM * p
 
 		return 0;
 }
+
 
 #if USE_DEFAULT_MAIN
 /////////////////////////////////////////////////////////////////////////////////////////
