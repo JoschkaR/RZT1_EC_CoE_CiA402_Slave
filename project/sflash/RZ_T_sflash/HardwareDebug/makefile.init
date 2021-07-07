@@ -1,0 +1,11 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+arg1 = $(1)
+export PATH=C:\Program Files (x86)\GNU Tools ARM Embedded\6 2017-q2-update\bin\;C:\Program Files (x86)\GNU Tools ARM Embedded\6 2017-q2-update\libexec\gcc\6 2017-q2-update\;C:\Users\josch\.eclipse\com.renesas.platform_1435879475\Utilities;C:/Renesas/e2_studio/eclipse//plugins/com.renesas.runtime.jdk.hotspot.win32.x86_64_11.0.8.202009102051/jdk-11.0.8+10/bin/client;C:/Renesas/e2_studio/eclipse//plugins/com.renesas.runtime.jdk.hotspot.win32.x86_64_11.0.8.202009102051/jdk-11.0.8+10/bin;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64_win\mpirt;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64_win\compiler;C:\Program Files\Python39\Scripts\;C:\Program Files\Python39\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\eda\gtkwave\bin;C:\eda\GHDL\bin;C:\Program Files\Java\jdk\bin;C:\Program Files\apache-maven\bin;C:\Program Files\Java\jre1.8.0_261\bin;C:\MinGW\bin;C:\Program Files\PuTTY\;C:\Program Files (x86)\GnuWin32\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files (x86)\GNU Tools ARM Embedded\6 2017-q2-update\bin;C:\Users\josch\AppData\Local\Microsoft\WindowsApps;C:\Users\josch\AppData\Roaming\npm;C:\Users\josch\AppData\Local\GitHubDesktop\bin;C:\Users\josch\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\josch\AppData\Local\Microsoft\WindowsApps;C:\Users\josch\OneDrive\Studium\Semester\6. Semester\Fachpraktikum\EtherCAT_CiA402\1_Workspace\workspace_selfmade_ssc\1_V2.x\EtherCAT_SSC_CiA402
+export TCINSTALL=C:\Program Files (x86)\GNU Tools ARM Embedded\6 2017-q2-update$(call arg1,\)
+export CWD=$(CURDIR)
+export TC_VERSION=6.3.1.20170620
+export PWD=$(CURDIR)
+export GCC_VERSION=6.3.1

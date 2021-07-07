@@ -1,0 +1,8 @@
+08:11:29 **** Build of configuration HardwareDebug for project RZ_T_sflash ****
+make -j4 all 
+arm-none-eabi-size --format=berkeley "RZ_T_sflash_sample.x"
+   text	   data	    bss	    dec	    hex	filename
+  80064	   2012	 149120	 231196	  3871c	RZ_T_sflash_sample.x
+
+08:11:31 Build Finished. 0 errors, 0 warnings. (took 1s.440ms)
+
