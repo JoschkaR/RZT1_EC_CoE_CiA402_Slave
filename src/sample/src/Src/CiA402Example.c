@@ -345,7 +345,17 @@ void APPL_OutputMapping(UINT16* pData)
 *////////////////////////////////////////////////////////////////////////////////////////
 void APPL_Application(void)
 {
+
+	 TOBJECT * pPDO = NULL;
+	 UINT16 nDaten = 0;
+
+	 // Erhalte Pointer auf Objekt mit Index 0x1600, 0x1601 oder 0x1602
+	 pPDO = OBJ_GetObjectHandle(sRxPDOassign.aEntries[0]);
+	 nDaten = pPDO->pVarPtr;
+
+
 	static stateCiA402 state = readyToSwitchOn;
+
 
 	switch(state){
 	case readyToSwitchOn:
